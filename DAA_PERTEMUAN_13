@@ -1,0 +1,550 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/ckhaila/Desain-dan-analisis-algoritma/blob/main/DAA_PERTEMUAN_13\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "queue = []\n",
+        "# Enqueue\n",
+        "queue.append(\"Amin\")\n",
+        "queue.append(\"Wasim\")\n",
+        "queue.append(\"Nick\")\n",
+        "# Dequeu\n",
+        "node = queue.pop(0)\n",
+        "print(node)\n",
+        "# output: Amin"
+      ],
+      "metadata": {
+        "id": "3frW3z5ZbuDO",
+        "outputId": "4fe0cc63-796f-46c7-d4c2-f85e8e545e91",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Amin\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def bfs(graph,start):\n",
+        "  visited= []\n",
+        "  queue = []\n",
+        "  queue = [start]\n",
+        "  while queue:\n",
+        "    node = queue.pop(0)\n",
+        "    if node not in visited:\n",
+        "      visited.append(node)\n",
+        "      neighbours = graph[node]\n",
+        "      for neighbours in neighbours:\n",
+        "        queue.append(neighbours)\n",
+        "  return visited"
+      ],
+      "metadata": {
+        "id": "M87xJCgJc6rm"
+      },
+      "execution_count": 45,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "graph = {'Amin' : ['Wasim','Nick','Mike'],\n",
+        "         'Wasim' : ['Imran','Amin'],\n",
+        "         'Imran' : ['Wasim','Faras'],\n",
+        "         'Faras' : ['Imran'],\n",
+        "         'Mike' : ['Amin'],\n",
+        "         'Nick' : ['Amin']\n",
+        "         }"
+      ],
+      "metadata": {
+        "id": "VdZqCy7eeBa2"
+      },
+      "execution_count": 5,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "bfs(graph,'Amin')\n",
+        "['Amin','Wasim','Nick','Mike','Imran','Faras']"
+      ],
+      "metadata": {
+        "id": "QVSrI0OKew-u",
+        "outputId": "3b84f7e7-d1cf-4635-d69c-2ef1dfa36283",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['Amin', 'Wasim', 'Nick', 'Mike', 'Imran', 'Faras']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 6
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# O Amin -------------------\n",
+        "# |            |            |\n",
+        "# O Wasim   O Nick       O Mike\n",
+        "# |\n",
+        "# O Imran\n",
+        "# |\n",
+        "# O Faras\n",
+        "\n",
+        "bfs(graph,'Amin')"
+      ],
+      "metadata": {
+        "id": "eAfPC_gofGom",
+        "outputId": "e05940f6-9e41-4fd3-cfc6-d59b3a20801c",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 7,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['Amin', 'Wasim', 'Nick', 'Mike', 'Imran', 'Faras']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 7
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# O Amin -------------------\n",
+        "# |            |            |\n",
+        "# O Wasim   O Nick       O Mike\n",
+        "# |\n",
+        "# O Imran\n",
+        "# |\n",
+        "# O Faras\n",
+        "\n",
+        "bfs(graph,'Wasim')"
+      ],
+      "metadata": {
+        "id": "sAoCWgJIgFxW",
+        "outputId": "4d7677fc-437a-4156-cb40-bca8aff7f8f7",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['Wasim', 'Imran', 'Amin', 'Faras', 'Nick', 'Mike']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 8
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# O Amin -------------------\n",
+        "# |            |            |\n",
+        "# O Wasim   O Nick       O Mike\n",
+        "# |\n",
+        "# O Imran\n",
+        "# |\n",
+        "# O Faras\n",
+        "\n",
+        "bfs(graph,'Faras')"
+      ],
+      "metadata": {
+        "id": "47l0L780gM8e",
+        "outputId": "c688012b-65fe-4c85-be3b-48671b7c7c0e",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['Faras', 'Imran', 'Wasim', 'Amin', 'Nick', 'Mike']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 9
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "graph = {'0' : ['9','7','11'],\n",
+        "         '9' : ['8','10','0'],\n",
+        "         '7' : ['6','3','0','11'],\n",
+        "         '8' : ['1','12','9'],\n",
+        "         '6' : ['5','7'],\n",
+        "         '12' : ['2','8'],\n",
+        "         '3' : ['2','4','7'],\n",
+        "         '5' : ['6'],\n",
+        "         '4' : ['3'],\n",
+        "         '1' : ['10','8'],\n",
+        "         '2' : ['3','12'],\n",
+        "         '10' : ['9','1'],\n",
+        "         '11' : ['0','7']\n",
+        "         }"
+      ],
+      "metadata": {
+        "id": "_XnckmA-lYYu"
+      },
+      "execution_count": 15,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "bfs(graph,'0')"
+      ],
+      "metadata": {
+        "id": "z47F4tdcnquu",
+        "outputId": "da4336be-7b43-4f2a-de1a-0d3d4e665440",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 16,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['0', '9', '7', '11', '8', '10', '6', '3', '1', '12', '5', '2', '4']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 16
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "graph = {'Rektor' : ['Warek1','Warek2'],\n",
+        "         'Warek2' : ['Kaprodi1','Kaprodi2','Kaprodi3','Rektor'],\n",
+        "         'Kaprodi1' : ['DosenA','DosenB','DosenC','Warek2'],\n",
+        "         'Kaprodi2' : ['DosenD','DosenE','Warek2'],\n",
+        "         'Kaprodi3' : ['DosenF','DosenG','Warek2'],\n",
+        "         'DosenG' : ['Kaprodi3'],\n",
+        "         'DosenF' : ['Kaprodi3'],\n",
+        "         'DosenD' : ['Kaprodi2'],\n",
+        "         'DosenE' : ['Kaprodi2'],\n",
+        "         'DosenC' : ['Kaprodi1'],\n",
+        "         'DosenB' : ['Kaprodi1'],\n",
+        "         'DosenA' : ['Kaprodi1'],\n",
+        "         'Warek1' : ['Rektor']\n",
+        "         }"
+      ],
+      "metadata": {
+        "id": "Df9irs4Jy-8M"
+      },
+      "execution_count": 41,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "bfs(graph,'Rektor')"
+      ],
+      "metadata": {
+        "id": "StiIbqyRzBDc",
+        "outputId": "662eefc0-66d9-4871-f674-55478fb02f36",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 46,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['Rektor',\n",
+              " 'Warek1',\n",
+              " 'Warek2',\n",
+              " 'Kaprodi1',\n",
+              " 'Kaprodi2',\n",
+              " 'Kaprodi3',\n",
+              " 'DosenA',\n",
+              " 'DosenB',\n",
+              " 'DosenC',\n",
+              " 'DosenD',\n",
+              " 'DosenE',\n",
+              " 'DosenF',\n",
+              " 'DosenG']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 46
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# DEPTH-FIRST SEARCH\n",
+        "def dfs(visited, graph, node):\n",
+        "  if node not in visited:\n",
+        "    print(node)\n",
+        "    visited.add(node)\n",
+        "    visited.add(node)\n",
+        "    for neighbour in graph[node]:\n",
+        "      dfs(visited, graph, neighbour)"
+      ],
+      "metadata": {
+        "id": "qTdB6SD60Wmb"
+      },
+      "execution_count": 47,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "graph = {'Amin' : ['Wasim','Nick','Mike'],\n",
+        "         'Wasim' : ['Imran','Amin'],\n",
+        "         'Imran' : ['Wasim','Faras'],\n",
+        "         'Faras' : ['Imran'],\n",
+        "         'Mike' : ['Amin'],\n",
+        "         'Nick' : ['Amin']\n",
+        "         }"
+      ],
+      "metadata": {
+        "id": "qgWoleT81kgT"
+      },
+      "execution_count": 48,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "visited = set()\n",
+        "dfs(visited, graph, 'Amin')"
+      ],
+      "metadata": {
+        "id": "VgkJKaRS1s5j",
+        "outputId": "8ace3a7b-454f-40dd-a083-c0bd60065656",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 49,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Amin\n",
+            "Wasim\n",
+            "Imran\n",
+            "Faras\n",
+            "Nick\n",
+            "Mike\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "visited = set()\n",
+        "dfs(visited, graph, 'Wasim')"
+      ],
+      "metadata": {
+        "id": "ws3puOph16Rj",
+        "outputId": "90937abf-7043-4caf-bc9d-63a50b52a2ce",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 50,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Wasim\n",
+            "Imran\n",
+            "Faras\n",
+            "Amin\n",
+            "Nick\n",
+            "Mike\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "visited = set()\n",
+        "dfs(visited, graph, 'Faras')"
+      ],
+      "metadata": {
+        "id": "cPLKeHKR1-v6",
+        "outputId": "377954a9-da94-47a6-f309-b0f4eda1f36e",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 51,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Faras\n",
+            "Imran\n",
+            "Wasim\n",
+            "Amin\n",
+            "Nick\n",
+            "Mike\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "visited = set()\n",
+        "dfs(visited, graph, 'Nick')"
+      ],
+      "metadata": {
+        "id": "RGXZI-fR2DJb",
+        "outputId": "06a7ab7d-0497-4119-9f4f-815ff070ef3c",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 53,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Nick\n",
+            "Amin\n",
+            "Wasim\n",
+            "Imran\n",
+            "Faras\n",
+            "Mike\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "graph = {'Rektor' : ['Warek1','Warek2'],\n",
+        "         'Warek2' : ['Kaprodi1','Kaprodi2','Kaprodi3','Rektor'],\n",
+        "         'Kaprodi1' : ['DosenA','DosenB','DosenC','Warek2'],\n",
+        "         'Kaprodi2' : ['DosenD','DosenE','Warek2'],\n",
+        "         'Kaprodi3' : ['DosenF','DosenG','Warek2'],\n",
+        "         'DosenG' : ['Kaprodi3'],\n",
+        "         'DosenF' : ['Kaprodi3'],\n",
+        "         'DosenD' : ['Kaprodi2'],\n",
+        "         'DosenE' : ['Kaprodi2'],\n",
+        "         'DosenC' : ['Kaprodi1'],\n",
+        "         'DosenB' : ['Kaprodi1'],\n",
+        "         'DosenA' : ['Kaprodi1'],\n",
+        "         'Warek1' : ['Rektor']\n",
+        "         }"
+      ],
+      "metadata": {
+        "id": "CaBo1IL-2Lqz"
+      },
+      "execution_count": 55,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "visited = set()\n",
+        "dfs(visited, graph, 'Rektor')"
+      ],
+      "metadata": {
+        "id": "GBMilFCJ2NCL",
+        "outputId": "c4d68033-204d-4076-c653-a645dc6f7a7b",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 56,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Rektor\n",
+            "Warek1\n",
+            "Warek2\n",
+            "Kaprodi1\n",
+            "DosenA\n",
+            "DosenB\n",
+            "DosenC\n",
+            "Kaprodi2\n",
+            "DosenD\n",
+            "DosenE\n",
+            "Kaprodi3\n",
+            "DosenF\n",
+            "DosenG\n"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "name": "Welcome To Colaboratory",
+      "toc_visible": true,
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
